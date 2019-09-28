@@ -1,0 +1,29 @@
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      {{ 'appbar_title.settings' | translate }}
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background-color: #f2f2f2">
+  <ion-list>
+    <p class="select-lang">{{ 'content.settings.lang' | translate }}:</p>
+    <ion-select interface="popover" #lang (ionChange)="changeLang(lang.value)">
+      <ion-option value="en" selected>English</ion-option>
+      <ion-option value="id">Indonesian</ion-option>
+    </ion-select>
+    <h2>{{ 'content.settings.about' | translate }}</h2>
+  </ion-list>
+
+  <div class="settings-footer">
+    <h4>{{ 'content.settings.terms' | translate }}</h4>
+    <p>Ragunan Zoo v1.0</p>
+  </div>
+</ion-content>

@@ -1,0 +1,48 @@
+<ion-content>
+  <div class="get-direction-content">
+    <h6>Address</h6>
+    <p>Jln Harsono RM No. 1, Ragunan, Pasar Minggu</p>
+    <p>Jakarta Selatan, 12550</p>
+    <p>Indonesia</p>
+    <p>+622178847114</p>
+
+    <div #getdirection_maps id="getdirection_maps"></div>
+    <ion-buttons>
+      <button ion-button color="button-color">Get Direction</button>
+    </ion-buttons>
+  </div>
+  <div class="toggle-car-bus">
+    <div (click)="changeToRouteCar()" id="car">
+      <img id="carimg" src="assets/imgs/icon_car_on.png" alt=""><span id="carspan">By Car</span>
+    </div>
+    <div (click)="changeToRouteBus()" id="bus">
+      <img id="busimg" src="assets/imgs/icon_bus_off.png" alt=""><span id="busspan">By Bus</span>
+    </div>
+    <!-- <ion-buttons>
+      <button ion-button>
+        <img src="assets/imgs/icon_car_on.png" alt=""><span>By Car</span>
+      </button>
+      <button ion-button>
+        <img src="assets/imgs/icon_bus_off.png" alt=""><span>By Bus</span>
+      </button>
+    </ion-buttons> -->
+  </div>
+  <div #car id="car-routes">
+    <ion-list>
+      <ion-item *ngFor="let car_route of bycar">
+        <h2>{{car_route.title}}</h2>
+        <p>{{car_route.routes}}</p>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div #bus id="bus-routes">
+    <ion-list>
+      <ion-item *ngFor="let bus_route of bybus">
+        <h2>{{bus_route.title}}</h2>
+        <ol>
+          <li *ngFor="let route of bus_route.routes"><p>{{route}}</p></li>
+        </ol>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

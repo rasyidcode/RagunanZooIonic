@@ -1,0 +1,175 @@
+<ion-header>
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      {{ 'appbar_title.home' | translate }}
+    </ion-title>
+
+    <!-- only for testing button -->
+    <!-- <ion-buttons end>
+      <button ion-button icon-only (click)="openIntroApp()">
+        <ion-icon name="browsers"></ion-icon>
+      </button>
+    </ion-buttons> -->
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: #f2f2f2;">
+  <div>
+    <ion-slides #slidesCarousel pager autoplay="7000" loop="true" speed="300">
+      <ion-slide *ngFor="let item of slideitems" (click)="onSlideTaps(item)">
+        <h2 class="carousel-title">{{item.title}}</h2>
+        <img src="{{item.assetcover}}" alt="">
+      </ion-slide>
+      <!-- <ion-slide>
+        <h2 class="carousel-title">Blue Peacock has a very beautiful feather</h2>
+        <img src="assets/imgs/carousel/cover2.jpg" alt="cover 1">
+      </ion-slide>
+      <ion-slide>
+        <h2 class="carousel-title">Blue Peacock has a very beautiful feather</h2>
+        <img src="assets/imgs/carousel/cover3.jpg" alt="cover 2">
+      </ion-slide>
+      <ion-slide>
+        <h2 class="carousel-title">Blue Peacock has a very beautiful feather</h2>
+        <img src="assets/imgs/carousel/cover4.jpg" alt="cover 3">
+      </ion-slide> -->
+    </ion-slides>
+  </div>
+  <div id="next-attraction">
+    <img src="assets/imgs/icon_nextattraction.png" alt="" width="13px" height="13px">&nbsp;
+    <b>Next Attraction: </b>&nbsp;
+    <span id="yellow-clock">09:00</span>&nbsp;
+    <span>Feeding the Orangutan</span>
+  </div>
+  <!-- <div class="card-home">
+    <ion-card>
+      <ion-card-header>
+        <img src="assets/imgs/animals/thumb_13012.jpg" alt="">
+      </ion-card-header>
+      <ion-card-content>
+        <img src="assets/imgs/home_bannermenu_icon_information_satwa.png" alt="">
+        <span class="bannermenu-title">RAGUNAN ANIMAL</span>
+      </ion-card-content>
+    </ion-card>
+  </div> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col class="remove-padding">
+        <ion-card (click)="onPageTap(animalcollection)">
+          <img src="assets/imgs/animals/thumb_13012.jpg" height="80px" alt="">
+          <div class="home-card-banner">
+            <img class="left-img" src="assets/imgs/home_bannermenu_icon_information_satwa.png" alt="">
+            <p class="bannermenu-title left-content">RAGUNAN ANIMAL</p>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col class="remove-padding">
+        <ion-card (click)="onPageTap(visitorinfo)">
+          <img src="assets/imgs/animals/thumb_11014.jpg" height="80px" alt="">
+          <div class="home-card-banner">
+            <img class="right-img" src="assets/imgs/home_bannermenu_icon_information.png" alt="">
+            <p class="bannermenu-title right-content">ZOO PARK INFORMATION</p>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="add-margin" (click)="onPageTap(zoomap)">
+    <img src="assets/imgs/button_ragunanmap.png" alt="">
+  </div>
+  <div class="add-margin" (click)="onPageTap(photobooth)">
+    <img src="assets/imgs/photobooth.png" alt="">
+  </div>
+  <div id="fun-facts">
+    <span>FUN FACTS!</span>
+  </div>
+  <div>
+    <ion-card>
+      <!-- autoplay="8000" loop="true" speed="300" -->
+      <ion-slides #slides (ionSlideDidChange)="slidesChanged()" autoplay="5000" loop="true" speed="300">
+        <ion-slide *ngFor="let item of slideitemAnimals">
+          <ion-card-header>
+            <ion-item-divider>
+              <img class="normalin" src="{{item.assetimage}}" alt="">
+              <img class="icon-funfact" src="assets/imgs/icon_funfacts.png" alt="">
+              <div class="funfact-content">
+                <p>{{item.fact}}</p>
+              </div>
+            </ion-item-divider>
+          </ion-card-header>
+        </ion-slide>
+        <!-- <ion-slide>
+          <ion-card-header>
+            <ion-item-divider>
+              <img class="normalin" src="assets/imgs/animals/thumb_11014.jpg" alt="">
+              <img class="icon-funfact" src="assets/imgs/icon_funfacts.png" alt="">
+              <div class="funfact-content">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam velit facilis officiis</p>
+              </div>
+            </ion-item-divider>
+          </ion-card-header>
+        </ion-slide>
+        <ion-slide>
+          <ion-card-header>
+            <ion-item-divider>
+              <img class="normalin" src="assets/imgs/animals/thumb_11014.jpg" alt="">
+              <img class="icon-funfact" src="assets/imgs/icon_funfacts.png" alt="">
+              <div class="funfact-content">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam velit facilis officiis</p>
+              </div>
+            </ion-item-divider>
+          </ion-card-header>
+        </ion-slide>
+        <ion-slide>
+          <ion-card-header>
+            <ion-item-divider>
+              <img class="normalin" src="assets/imgs/animals/thumb_11014.jpg" alt="">
+              <img class="icon-funfact" src="assets/imgs/icon_funfacts.png" alt="">
+              <div class="funfact-content">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam velit facilis officiis</p>
+              </div>
+            </ion-item-divider>
+          </ion-card-header>
+        </ion-slide> -->
+      </ion-slides>
+      <ion-card-content *ngIf="shareFact; else sharehidden">
+        <span class="about-text" (click)="onAboutTap(animalName)" >ABOUT {{animalName}}</span>
+        <span class="share-text" (click)="onShareTap(animalName)" >SHARE</span>
+      </ion-card-content>
+      <ng-template #sharehidden>
+        <ion-card-content>
+          <span class="about-text" (click)="onAboutTap(animalName)">ABOUT {{animalName}}</span>
+        </ion-card-content>
+      </ng-template>
+    </ion-card>
+  </div>
+  <div class="fun-facts-instruction">
+      <img src="assets/imgs/icon_swipearrow_left.png" alt="">
+      <span style="margin: 0 8px; font-size: 10px;">swipe left or right to see more facts</span>
+      <img src="assets/imgs/icon_swipearrow_right.png" alt="">
+  </div>
+  <div class="animal-collection">
+    <ion-card>
+      <ion-card-header>
+        <div class="circle-volume" (click)="playTigerSound()">
+          <ion-icon name="volume-up"></ion-icon>
+        </div>
+        <img src="assets/imgs/image_badgecollect_samplepic1.png" alt="">
+      </ion-card-header>
+      <ion-card-content>
+        <img class="badge-images" src="assets/imgs/image_badgecollect.png" alt="">
+        <p class="title">Collect All Animal Badges Collection</p>
+        <p class="subtitle">and listen to their sound!</p>
+        <ion-buttons>
+          <button (click)="onPageTap(animalbadge)" color="button-color" ion-button><span class="start-here-badges">START HERE!</span><img class="ic-arrow" src="assets/imgs/ic_arrow.png" alt=""></button>
+        </ion-buttons>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div class="powered-by">
+    <p style="text-align: center; font-size: 10px;">Powered By</p>
+    <img src="assets/imgs/isat.png" alt="">
+  </div>
+</ion-content>

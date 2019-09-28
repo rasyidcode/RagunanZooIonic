@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Animal Collection
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content style="background-color: #f2f2f2;">
+    <ion-item no-lines>
+      <ion-select interface="popover" #c (ionChange)="onChange(c.value)">
+        <ion-option value="all" selected>Showing All Animal ({{all}})</ion-option>
+        <ion-option value="mammal">Mammal ({{mammal}})</ion-option>
+        <ion-option value="reptile">Reptile ({{reptile}})</ion-option>
+        <ion-option value="aves">Aves ({{aves}})</ion-option>
+        <ion-option value="fishes">Fishes ({{fishes}})</ion-option>
+      </ion-select>
+    </ion-item>
+  <ion-grid>
+    <ion-row *ngFor="let animal of animalColl; let i = index">
+      <ion-col (click)="openDetailAnimal(animal[0])">
+        <div class="name">
+          <span>{{animal[0].name}}</span>
+        </div>
+        <img class="cover" src="{{animal[0].assets}}" alt="">
+      </ion-col>
+      <ion-col (click)="openDetailAnimal(animal[1])">
+        <div class="name">
+          <span>{{animal[1].name}}</span>
+        </div>
+        <img src="{{animal[1].assets}}" alt="">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-navbar color='primary'>
+    <ion-title>
+      Detail Animal
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color: #f2f2f2;">
+  <div id="section-1">
+    <h1>{{animal?.name}}</h1>
+    <img src="assets/imgs/default_ing.jpg" alt="">
+    <div class="instruction">
+      <h6>scroll down</h6>
+      <ion-icon name="arrow-dropdown"></ion-icon>
+    </div>
+  </div>
+  <div id="section-2">
+    <div id="detail-nav" class="detail-nav">
+      <ul>
+        <li (click)="scrollToDesc()" ><a>Description</a></li>
+        <li (click)="scrollToGal()"><a>Gallery</a></li>
+        <li (click)="scrollToFact()"><a>Fun Facts</a></li>
+        <li (click)="scrollToMap()"><a>Map</a></li>
+      </ul>
+    </div>
+    <div class="animal-audio" (click)="listenAudio()">
+      <ion-icon name="volume-up"></ion-icon>
+      <p>Click here to listen to the audio</p>
+    </div>
+    <div class="animal-desc">
+      <p>{{animal?.description}}</p>
+      <div [ngStyle]="{'background-image': 'url('+animal?.assets+')'}">
+        <div class="circle-audio">
+          <ion-icon name="volume-up"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="animal-summary">
+      <h3 class="title">Sumatran Tiger</h3>
+      <div *ngFor="let item of animal?.summary">
+        <div class="subtitle">
+          <h6>{{item.key}}</h6>
+          <h3>{{item.value}}</h3>
+        </div>
+        <hr>
+      </div>
+      <!-- <div class="subtitle">
+        <h6>population in the wild</h6>
+        <h3>{{animal?.summary.population}}</h3>
+      </div>
+      <hr>
+      <div class="subtitle">
+        <h6>habitat</h6>
+        <h3>{{animal?.summary.habitat}}</h3>
+      </div>
+      <hr>
+      <div class="subtitle">
+        <h6>age</h6>
+        <h3>{{animal?.summary.age}}</h3>
+      </div>
+      <hr>
+      <div class="subtitle">
+        <h6>food</h6>
+        <h3>{{animal?.summary.food}}</h3>
+      </div> -->
+    </div>
+    <div class="wiki-references">
+      <div class="title-segment">LEARN MORE</div>
+      <img src="assets/imgs/icon_wikipedia.png" alt="">
+      <p>Wikipedia</p>
+    </div>
+    <div class="animal-gallery">
+      <div class="title-segment">Gallery</div>
+      <div class="image-button">
+        <img src="assets/imgs/addbuttoneng.png" alt="" srcset="">
+      </div>
+    </div>
+    <div class="animal-location">
+      <p>You can find {{animal?.name}} in Ragunan at</p>
+      <div #animalloc id="animalloc"></div>
+    </div>
+    <div class="fun-facts">
+      <div class="title-segment">Fun Facts</div>
+      <ion-card>
+        <ion-slides #slides autoplay="5000" loop="true" speed="300">
+          <ion-slide *ngFor="let fact of animal?.fun_facts">
+            <ion-card-header>
+              <img class="normalin" src="{{animal?.assets}}" alt="">
+              <img class="icon-funfact" src="assets/imgs/icon_funfacts.png" alt="">
+              <div class="funfact-content">
+                <p>{{fact}}</p>
+              </div>
+            </ion-card-header>
+          </ion-slide>
+        </ion-slides>
+        <ion-card-content>
+          <span class="share-text">SHARE</span>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div class="fun-facts-instruction">
+      <img src="assets/imgs/icon_swipearrow_left.png" alt="">
+      <span style="margin: 0 8px; font-size: 10px;">swipe left or right to see more facts</span>
+      <img src="assets/imgs/icon_swipearrow_right.png" alt="">
+    </div>
+  </div>
+  <ion-fab bottom right>
+    <button ion-fab mini>
+      <ion-icon name="share"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button (click)="tapToScoll()" ion-fab mini><ion-icon name="logo-facebook"></ion-icon></button>
+      <button ion-fab mini><ion-icon name="logo-twitter"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

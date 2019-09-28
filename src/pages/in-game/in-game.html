@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Animal Trivias
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: #f2f2f2;">
+  <div id="time-n-life">
+    <h4 class="time-left">Time Left</h4>
+    <div class="life-left">
+      <h4>Life</h4>
+      <img class="lifes" src="assets/imgs/life.png" alt="">
+      <img class="lifes" src="assets/imgs/life.png" alt="">
+      <img class="lifes" src="assets/imgs/life.png" alt="">
+    </div>
+    <div class="time-bar">
+      <div id="current-progress"></div>
+    </div>
+  </div>
+  <div id="score">
+    <h2>Score : {{score}}/10</h2>
+  </div>
+  <div id="quiz">
+    <ion-slides #slides>
+      <ion-slide *ngFor="let question of questions; let i = index">
+        <div class="slides">
+          <h4 class="question">{{question.question}}</h4>
+          <div class="answers">
+            <label *ngFor="let answer of question.answer_key; let j = index" class="container">{{question.answer_val[j]}}
+              <input (click)="checkAnswer(i, question, question.answer_key[j])" class="radio-answer" type="radio" name="question{{i}}"
+                value="{{question.answer_key[j]}}">
+              <span class="checkmark"></span>
+            </label>
+
+            <!-- <label class="container">{{question.answer_val[0]}}
+              <input (click)="checkAnswer(i, question, question.answer_key[0])" class="radio-answer" type="radio" name="question{{i}}"
+                value="{{question.answer_key[0]}}">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">{{question.answer_val[1]}}
+              <input (click)="checkAnswer(i, question, question.answer_key[1])" class="radio-answer" type="radio" name="question{{i}}"
+                value="{{question.answer_key[1]}}">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">{{question.answer_val[2]}}
+              <input (click)="checkAnswer(i ,question, question.answer_key[2])" class="radio-answer" type="radio" name="question{{i}}"
+                value="{{question.answer_key[2]}}">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">{{question.answer_val[3]}}
+              <input (click)="checkAnswer(i, question, question.answer_key[3])" class="radio-answer" type="radio" name="question{{i}}"
+                value="{{question.answer_key[3]}}">
+              <span class="checkmark"></span>
+            </label> -->
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <h1 *ngIf="correctAnswer; else wrongAnswer" class="result-info" style="font-weight: 900; margin: 100px 0 !important; color: green; font-size: 17px;">CORRECT!</h1>
+        <ng-template #wrongAnswer>
+          <h1 else class="result-info" style="font-weight: 900; margin: 100px 0 !important; color: red; font-size: 17px;">WRONG!</h1>
+        </ng-template>
+        <div class="share">
+          <ion-buttons>
+            <button ion-button color="button-color3">Share <ion-icon name="logo-facebook"></ion-icon></button>
+            <button ion-button color="button-color3">Share <ion-icon name="logo-twitter"></ion-icon></button>
+          </ion-buttons>
+        </div>
+        <ion-buttons>
+          <button *ngIf="isGameOver; else playgame" class="bigger-button" (click)="goToGameOver()" ion-button><span>Gameover</span>
+            <ion-icon name="arrow-forward"></ion-icon>
+          </button>
+          <ng-template #playgame>
+              <button class="bigger-button" (click)="nextQuestion()" ion-button><span>Next</span>
+                <ion-icon name="arrow-forward"></ion-icon>
+              </button>
+          </ng-template>
+        </ion-buttons>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div id="gameover">
+    <div id="main-info">
+      <h1>GAME OVER</h1>
+      <div id="collected-stars">
+        <img id="star1" class="star" src="assets/imgs/trivias/star_small_empty.png" alt="">
+        <img id="star2" class="star" src="assets/imgs/trivias/star_empty.png" alt="">
+        <img id="star3" class="star" src="assets/imgs/trivias/star_small_empty.png" alt="">
+      </div>
+      <p>You've Collected</p>
+      <div id="star-score">
+        <h1>{{score}}</h1><img class="star" src="assets/imgs/trivias/star_small.png" alt="">
+      </div>
+      <div class="share-section">
+        <h6>You are now</h6>
+        <ion-buttons>
+          <button ion-button><img class="star" src="assets/imgs/trivias/star_small.png" alt="">The wildlife fans!</button>
+        </ion-buttons>
+        <ion-buttons>
+          <button ion-button color="button-color3">Share <ion-icon name="logo-facebook"></ion-icon></button>
+          <button ion-button color="button-color3">Share <ion-icon name="logo-twitter"></ion-icon></button>
+        </ion-buttons>
+      </div>
+    </div>
+    <div id="option-section">
+      <ion-buttons>
+        <button (click)="playAgain()" ion-button>Retry</button>
+      </ion-buttons>
+      <ion-buttons>
+        <button (click)="backToHomePage()" ion-button>Back to home page</button>
+      </ion-buttons>
+    </div>
+  </div>
+</ion-content>
